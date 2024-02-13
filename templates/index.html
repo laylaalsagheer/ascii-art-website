@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ASCII Art Web</title>
+  <link rel="stylesheet" href="/templates/css-reset.css" type="text/css">
+  <link rel="stylesheet" href="/templates/styles.css" type="text/css" />
+</head>
+
+<body>
+  <form id="mainForm" method="post" action="/ascii-art">
+    <h1>ASCII Art Web</h1>
+    <fieldset>
+      <p>Please choose the type:</p>
+      <label for="shadow"><input id="shadow" type="radio" name="banner-type" value="shadow" class="inline" />
+        Shadow</label>
+      <label for="standard"><input id="standard" type="radio" name="banner-type" value="standard" class="inline" />
+        Standard</label>
+      <label for="thinkertoy"><input id="thinkertoy" type="radio" name="banner-type" value="thinkertoy"
+          class="inline" /> Thinkertoy</label>
+    </fieldset>
+    <fieldset>
+      <label for="text">Enter Your Ascii text: <input id="text" name="text" type="text" required /></label>
+      <input type="submit" value="Submit">
+      <button id="exportButton" type="button">Export ASCII Art</button>
+      <input type="hidden" id="exportResult" name="exportResult" value="{{.Result}}">
+    </fieldset>
+    <fieldset>
+      <label for="textarea">Your text will be converted as below: </label>
+      <textarea id="textarea" name="textarea" rows="20" cols="50" >{{.Result}}</textarea>
+    </fieldset>
+  </form>
+  <script>
+    document.getElementById('exportButton').addEventListener('click', function() {
+      document.getElementById('mainForm').action = '/export';
+      document.getElementById('mainForm').submit();
+    });
+  </script>
+</body>
+</html>
